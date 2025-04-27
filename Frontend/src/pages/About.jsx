@@ -9,7 +9,6 @@ const About = () => {
       image: '/images/team/perfumer.jpg',
       bio: 'With over 15 years of experience in crafting unique fragrances.'
     },
-    // Add more team members
   ];
 
   return (
