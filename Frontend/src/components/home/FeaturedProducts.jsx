@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Heart, ShoppingBag, Star } from 'lucide-react';
-import ProductCard from '../products/ProductCard';
 
 const FeaturedProducts = () => {
   const [activeCategory, setActiveCategory] = useState('best-sellers');
+  const [animationComplete, setAnimationComplete] = useState(false);
+  
+  useEffect(() => {
+    // Reset animation state when category changes
+    setAnimationComplete(false);
+    const timer = setTimeout(() => setAnimationComplete(true), 600);
+    return () => clearTimeout(timer);
+  }, [activeCategory]);
   
   const categories = [
     { id: 'best-sellers', name: 'Best Sellers' },
@@ -22,7 +29,7 @@ const FeaturedProducts = () => {
         price: 129.99,
         rating: 4.8,
         reviewCount: 124,
-        image: "/images/product1.jpg",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIZocDeG1fzJLARAjEUCdlvgiu94Bzo60VaQ&s",
         description: "A mysterious blend of dark rose and oudh",
         isNew: false,
         colors: ["#3D0814", "#722F37"]
@@ -33,7 +40,7 @@ const FeaturedProducts = () => {
         price: 89.99,
         rating: 4.5,
         reviewCount: 86,
-        image: "/images/product2.jpg",
+        image: "https://daydateparfums.com/cdn/shop/files/hero450x450.jpg",
         description: "Fresh citrus notes with subtle floral undertones",
         isNew: false,
         colors: ["#F9A826", "#FEF3C7"]
@@ -44,7 +51,7 @@ const FeaturedProducts = () => {
         price: 110.00,
         rating: 4.7,
         reviewCount: 109,
-        image: "/images/product3.jpg",
+        image: "https://escentual.com/cdn/shop/files/99350178735_688e6ab1-545e-45a7-9a4d-39df34734580.png?v=1729190846&width=1445",
         description: "Aquatic essence with amber and sandalwood",
         isNew: false,
         colors: ["#164E63", "#A5F3FC"]
@@ -57,7 +64,7 @@ const FeaturedProducts = () => {
         price: 149.99,
         rating: 4.9,
         reviewCount: 32,
-        image: "/images/product4.jpg",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIZocDeG1fzJLARAjEUCdlvgiu94Bzo60VaQ&s",
         description: "Warm amber with vanilla and exotic spices",
         isNew: true,
         colors: ["#92400E", "#FEF3C7"]
@@ -68,7 +75,7 @@ const FeaturedProducts = () => {
         price: 119.99,
         rating: 4.6,
         reviewCount: 27,
-        image: "/images/product5.jpg",
+        image: "https://daydateparfums.com/cdn/shop/files/hero450x450.jpg",
         description: "Intoxicating jasmine with cedar undertones",
         isNew: true,
         colors: ["#F0FDF4", "#4ADE80"]
@@ -79,7 +86,7 @@ const FeaturedProducts = () => {
         price: 159.99,
         rating: 4.8,
         reviewCount: 41,
-        image: "/images/product6.jpg",
+        image: "https://escentual.com/cdn/shop/files/99350178735_688e6ab1-545e-45a7-9a4d-39df34734580.png?v=1729190846&width=1445",
         description: "Rich black currant with patchouli and musk",
         isNew: true,
         colors: ["#18181B", "#A1A1AA"]
@@ -92,7 +99,7 @@ const FeaturedProducts = () => {
         price: 199.99,
         rating: 4.7,
         reviewCount: 58,
-        image: "/images/gift-set1.jpg",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIZocDeG1fzJLARAjEUCdlvgiu94Bzo60VaQ&s",
         description: "Collection of our finest floral fragrances",
         isNew: false,
         colors: ["#FB7185", "#FBCFE8"]
@@ -103,7 +110,7 @@ const FeaturedProducts = () => {
         price: 229.99,
         rating: 4.9,
         reviewCount: 76,
-        image: "/images/gift-set2.jpg",
+        image: "https://daydateparfums.com/cdn/shop/files/hero450x450.jpg",
         description: "Curated masculine scents for the modern man",
         isNew: false,
         colors: ["#0F172A", "#475569"]
@@ -114,7 +121,7 @@ const FeaturedProducts = () => {
         price: 179.99,
         rating: 4.6,
         reviewCount: 49,
-        image: "/images/gift-set3.jpg",
+        image: "https://escentual.com/cdn/shop/files/99350178735_688e6ab1-545e-45a7-9a4d-39df34734580.png?v=1729190846&width=1445",
         description: "Four seasonal fragrances for year-round elegance",
         isNew: true,
         colors: ["#6D28D9", "#C4B5FD"]
@@ -127,7 +134,7 @@ const FeaturedProducts = () => {
         price: 199.99,
         rating: 5.0,
         reviewCount: 18,
-        image: "/images/limited1.jpg",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIZocDeG1fzJLARAjEUCdlvgiu94Bzo60VaQ&s",
         description: "Exclusive blend inspired by moonlit Paris",
         isNew: true,
         colors: ["#0F172A", "#94A3B8"]
@@ -138,7 +145,7 @@ const FeaturedProducts = () => {
         price: 249.99,
         rating: 4.9,
         reviewCount: 24,
-        image: "/images/limited2.jpg",
+        image: "https://daydateparfums.com/cdn/shop/files/hero450x450.jpg",
         description: "Prestigious oud accord with royal spices",
         isNew: true,
         colors: ["#7F1D1D", "#FCA5A5"]
@@ -149,7 +156,7 @@ const FeaturedProducts = () => {
         price: 299.99,
         rating: 4.8,
         reviewCount: 12,
-        image: "/images/limited3.jpg",
+        image: "https://escentual.com/cdn/shop/files/99350178735_688e6ab1-545e-45a7-9a4d-39df34734580.png?v=1729190846&width=1445",
         description: "Vintage-inspired collection in collectible bottles",
         isNew: true,
         colors: ["#78350F", "#FCD34D"]
@@ -157,111 +164,218 @@ const FeaturedProducts = () => {
     ]
   };
 
-  // Custom component for product cards since we're enhancing beyond the existing ProductCard
+  // Get luminance type based on product name
+  const getLuminanceType = (name) => {
+    const lowerName = name.toLowerCase();
+    if (lowerName.includes('amber') || lowerName.includes('gold') || lowerName.includes('heritage') || lowerName.includes('royal')) {
+      return 'gold';
+    } else if (lowerName.includes('ocean') || lowerName.includes('breeze') || lowerName.includes('jasmine')) {
+      return 'blue';
+    } else {
+      return 'amber';
+    }
+  };
+
+  // Custom component for product cards
   const EnhancedProductCard = ({ product }) => {
     const [isHovered, setIsHovered] = useState(false);
+    const luminanceType = getLuminanceType(product.name);
     
     return (
       <motion.div
-        className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
-        whileHover={{ y: -8 }}
-        transition={{ type: 'spring', stiffness: 300 }}
+        className="group relative bg-black rounded-lg overflow-hidden shadow-xl"
+        whileHover={{ y: -5 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 25 }}
         onHoverStart={() => setIsHovered(true)}
         onHoverEnd={() => setIsHovered(false)}
       >
-        <div className="relative h-64 sm:h-72 overflow-hidden">
-          {/* Background gradient based on product colors */}
-          <div 
-            className="absolute inset-0 opacity-10" 
-            style={{
-              background: `linear-gradient(135deg, ${product.colors[0]}, ${product.colors[1]})`
+        <div className="relative h-80 overflow-hidden">
+          {/* Luxury gold/amber lighting effect overlay */}
+          <motion.div 
+            className="absolute inset-0 opacity-30 mix-blend-overlay" 
+            initial={{ opacity: 0.1 }}
+            animate={{ 
+              opacity: isHovered ? 0.4 : 0.2,
+              background: `radial-gradient(circle at 70% 30%, ${luminanceType === 'gold' ? 'rgb(255, 215, 0)' : luminanceType === 'blue' ? 'rgb(0, 120, 255)' : 'rgb(220, 120, 60)'}, transparent 70%)`
             }}
+            transition={{ duration: 0.8 }}
           />
           
-          {/* Product image */}
-          <motion.img
-            src={product.image}
-            alt={product.name}
-            className="w-full h-full object-cover object-center"
-            initial={{ scale: 1 }}
-            animate={{ scale: isHovered ? 1.05 : 1 }}
+          {/* Product image with subtle zoom effect */}
+          <motion.div className="relative w-full h-full flex items-center justify-center">
+            <motion.img
+              src={product.image}
+              alt={product.name}
+              className="max-h-full max-w-full object-cover"
+              initial={{ scale: 1 }}
+              animate={{ scale: isHovered ? 1.05 : 1 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              onError={(e) => {
+                e.target.src = "/images/placeholder.jpg"; // Fallback image
+                e.target.onerror = null;
+              }}
+            />
+          </motion.div>
+          
+          {/* Premium overlay gleam on hover */}
+          <motion.div
+            className="absolute inset-0 pointer-events-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isHovered ? 0.15 : 0 }}
             transition={{ duration: 0.4 }}
+            style={{
+              background: `linear-gradient(45deg, transparent, ${luminanceType === 'gold' ? 'rgba(255, 215, 0, 0.3)' : luminanceType === 'blue' ? 'rgba(0, 120, 255, 0.3)' : 'rgba(255, 180, 80, 0.3)'} 50%, transparent)`
+            }}
           />
           
           {/* New badge */}
           {product.isNew && (
-            <div className="absolute top-4 right-4">
-              <div className="bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded">
-                NEW
-              </div>
+            <div className="absolute top-4 right-4 bg-white text-black px-2 py-1 text-xs font-medium uppercase tracking-wider rounded">
+              New
             </div>
           )}
           
-          {/* Quick actions overlay */}
+          {/* Quick actions on hover */}
           <motion.div 
-            className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 flex justify-between items-center"
+            className="absolute inset-x-0 bottom-0 flex justify-center space-x-2 py-3 bg-black bg-opacity-50"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
             transition={{ duration: 0.3 }}
           >
-            <motion.button
-              className="rounded-full w-10 h-10 flex items-center justify-center bg-white text-gray-800 hover:bg-gray-100"
-              whileTap={{ scale: 0.95 }}
+            <motion.button 
+              className="p-2 rounded-full bg-white text-black hover:bg-gray-200 transition-colors"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
             >
-              <Heart size={18} />
+              <Heart className="h-4 w-4" />
             </motion.button>
-            
-            <Link 
-              to={`/products/${product.id}`}
-              className="bg-white text-gray-800 px-4 py-2 rounded-md font-medium flex items-center hover:bg-gray-100"
+            <motion.button 
+              className="p-2 rounded-full bg-white text-black hover:bg-gray-200 transition-colors"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
             >
-              Quick View
-            </Link>
+              <ShoppingBag className="h-4 w-4" />
+            </motion.button>
           </motion.div>
         </div>
         
-        {/* Product info */}
-        <div className="p-4">
-          <div className="flex justify-between items-start mb-2">
-            <h3 className="font-medium text-lg">{product.name}</h3>
+        {/* Product info - dark luxury style */}
+        <div className="p-5 bg-white">
+          <div className="flex justify-between items-start">
+            <h3 className="font-medium text-lg tracking-wide uppercase text-gray-900">
+              {product.name}
+            </h3>
             <span className="font-semibold text-lg">${product.price.toFixed(2)}</span>
           </div>
           
-          <p className="text-gray-600 text-sm mb-3">{product.description}</p>
-          
-          <div className="flex justify-between items-center">
-            <div className="flex items-center">
-              <Star className="h-4 w-4 text-amber-500 fill-amber-500" />
-              <span className="ml-1 text-sm font-medium">{product.rating}</span>
-              <span className="ml-1 text-xs text-gray-500">({product.reviewCount})</span>
+          <div className="flex items-center mt-2 mb-1">
+            <div className="flex mr-2">
+              {[...Array(5)].map((_, i) => (
+                <motion.span 
+                  key={i}
+                  initial={{ opacity: 0.8 }}
+                  animate={{ 
+                    opacity: isHovered ? 1 : 0.8
+                  }}
+                  transition={{ delay: i * 0.05, duration: 0.3 }}
+                >
+                  <Star 
+                    className={`h-4 w-4 ${i < Math.floor(product.rating) ? "text-amber-400 fill-amber-400" : "text-gray-300"}`}
+                  />
+                </motion.span>
+              ))}
             </div>
-            
-            <motion.button
-              className="text-sm font-medium text-gray-800 flex items-center hover:text-amber-600"
-              whileHover={{ x: 3 }}
-            >
-              Add to Bag <ShoppingBag size={14} className="ml-1" />
-            </motion.button>
+            <span className="text-sm text-gray-500">({product.reviewCount})</span>
           </div>
+          
+          <p className="text-sm text-gray-600 mt-1 line-clamp-1">{product.description}</p>
+          
+          <motion.div
+            className="absolute bottom-0 left-0 right-0 h-1"
+            style={{
+              background: luminanceType === 'gold' 
+                ? 'linear-gradient(90deg, #D4AF37, #FDF5E6)' 
+                : luminanceType === 'blue' 
+                  ? 'linear-gradient(90deg, #000080, #1E90FF)'
+                  : 'linear-gradient(90deg, #8B4513, #D2691E)'
+            }}
+            initial={{ scaleX: 0, originX: 0 }}
+            animate={{ scaleX: isHovered ? 1 : 0 }}
+            transition={{ duration: 0.5 }}
+          />
         </div>
       </motion.div>
     );
   };
-
+  
+  // Update the section to match luxury dark theme
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-20 bg-black text-white overflow-hidden">
+      {/* Animated background gradients */}
+      <motion.div 
+        className="absolute top-0 left-0 w-1/2 h-1/2 rounded-full blur-3xl opacity-20 mix-blend-screen"
+        animate={{ 
+          x: [0, 100, 50, 0], 
+          y: [0, 50, 100, 0],
+          scale: [1, 1.1, 0.9, 1],
+          opacity: [0.15, 0.2, 0.15, 0.15]
+        }}
+        transition={{ duration: 20, repeat: Infinity, repeatType: "loop" }}
+        style={{
+          background: 'radial-gradient(circle, rgba(255,215,0,0.6), rgba(205,127,50,0.3), transparent 70%)'
+        }}
+      />
+      
+      <motion.div 
+        className="absolute bottom-0 right-0 w-1/2 h-1/2 rounded-full blur-2xl opacity-20 mix-blend-screen"
+        animate={{ 
+          x: [0, -50, -100, 0], 
+          y: [0, -50, -100, 0], 
+          scale: [1, 0.9, 1.1, 1],
+          opacity: [0.15, 0.1, 0.2, 0.15]
+        }}
+        transition={{ duration: 15, repeat: Infinity, repeatType: "loop" }}
+        style={{
+          background: 'radial-gradient(circle, rgba(65,105,225,0.6), rgba(0,191,255,0.3), transparent 70%)'
+        }}
+      />
+      
+      <motion.div 
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 h-1/2 rounded-full blur-3xl opacity-10 mix-blend-screen"
+        animate={{ 
+          scale: [1, 1.2, 0.8, 1],
+          opacity: [0.1, 0.15, 0.05, 0.1]
+        }}
+        transition={{ duration: 25, repeat: Infinity, repeatType: "loop" }}
+        style={{
+          background: 'radial-gradient(circle, rgba(220,120,60,0.6), rgba(139,69,19,0.3), transparent 70%)'
+        }}
+      />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-16 relative"
         >
-          <h2 className="font-serif text-4xl md:text-5xl mb-4">Our Signature Collection</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-            Discover our carefully curated fragrances, crafted to evoke emotions and create lasting impressions
+          <h2 className="font-serif text-5xl md:text-6xl mb-4 tracking-wider uppercase">
+            Most Loved Scents
+          </h2>
+          <p className="text-gray-300 max-w-2xl mx-auto text-lg">
+            Discover the top-selling perfumes in our exclusive collection. Explore the most popular 
+            scents of the year from classic fragrances.
           </p>
+          
+          {/* Underline accent */}
+          <motion.div
+            className="h-px w-24 bg-gradient-to-r from-transparent via-white to-transparent mx-auto mt-8"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, delay: 0.3 }}
+          />
         </motion.div>
         
         {/* Category tabs */}
@@ -269,65 +383,65 @@ const FeaturedProducts = () => {
           {categories.map((category) => (
             <motion.button
               key={category.id}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-colors duration-300 relative ${
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
                 activeCategory === category.id 
-                  ? 'text-white' 
-                  : 'text-gray-600 hover:text-gray-900'
+                  ? 'bg-white text-black' 
+                  : 'bg-transparent text-gray-300 border border-gray-700 hover:border-white'
               }`}
-              onClick={() => setActiveCategory(category.id)}
               whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setActiveCategory(category.id)}
             >
-              {activeCategory === category.id && (
-                <motion.div
-                  layoutId="activeCategoryIndicator"
-                  className="absolute inset-0 bg-gray-900 rounded-full"
-                  transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                />
-              )}
-              <span className="relative z-10">{category.name}</span>
+              {category.name}
             </motion.button>
           ))}
         </div>
         
-        {/* Products grid */}
+        {/* Products grid with premium dark theme */}
         <motion.div
-          key={activeCategory}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, staggerChildren: 0.1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {featuredProducts[activeCategory].map((product) => (
-            <EnhancedProductCard key={product.id} product={product} />
+          {featuredProducts[activeCategory].map((product, index) => (
+            <motion.div
+              key={product.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.6 }}
+            >
+              <EnhancedProductCard product={product} />
+            </motion.div>
           ))}
         </motion.div>
         
         {/* View all button */}
-        <motion.div
-          className="text-center mt-16"
-          whileInView={{ opacity: 1, y: 0 }}
+        <motion.div 
+          className="flex justify-center mt-12"
           initial={{ opacity: 0, y: 20 }}
-          viewport={{ once: true }}
+          animate={{ opacity: animationComplete ? 1 : 0, y: animationComplete ? 0 : 20 }}
+          transition={{ delay: 0.5, duration: 0.6 }}
         >
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ type: "spring", stiffness: 400 }}
-          >
-            <Link
-              to="/products"
-              className="inline-flex items-center bg-gray-900 text-white px-8 py-3 rounded-md hover:bg-gray-800 transition duration-300 font-medium"
+          <Link to="/collections">
+            <motion.button
+              className="group flex items-center space-x-2 px-8 py-3 bg-transparent border border-white rounded-full hover:bg-white hover:text-black transition-colors"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
             >
-              Explore Full Collection
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </motion.div>
-          <p className="text-gray-500 mt-4 text-sm">Free shipping on orders over $100</p>
+              <span className="font-medium uppercase tracking-wider">View All</span>
+              <motion.span
+                animate={{ x: [0, 4, 0] }}
+                transition={{ repeat: Infinity, repeatType: "loop", duration: 1.5, repeatDelay: 1 }}
+              >
+                <ArrowRight className="h-5 w-5" />
+              </motion.span>
+            </motion.button>
+          </Link>
         </motion.div>
       </div>
     </section>
   );
-};
+}
 
 export default FeaturedProducts;
