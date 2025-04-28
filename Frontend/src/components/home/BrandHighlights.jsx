@@ -68,8 +68,26 @@ const BrandHighlights = () => {
     }
   };
 
+  // Wave animation for SVG path
+  const waveVariants = {
+    animate: {
+      d: [
+        "M0,96 C320,64 440,96 1080,64 L1080,192 L0,192 Z",
+        "M0,128 C320,96 480,160 1080,128 L1080,192 L0,192 Z",
+        "M0,64 C320,96 480,32 1080,96 L1080,192 L0,192 Z",
+        "M0,96 C320,64 440,96 1080,64 L1080,192 L0,192 Z"
+      ],
+      transition: {
+        duration: 10,
+        repeat: Infinity,
+        repeatType: "mirror",
+        ease: "easeInOut"
+      }
+    }
+  };
+
   return (
-    <section className="py-16 bg-gradient-to-b from-white to-gray-50">
+    <section className="py-16 bg-gradient-to-b from-black to-gray-900 text-white relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header with elegant underline */}
         <div className="text-center mb-20">
@@ -77,7 +95,7 @@ const BrandHighlights = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="text-4xl font-serif text-gray-900 mb-6 relative inline-block"
+            className="text-4xl font-serif text-white mb-6 relative inline-block"
           >
             Why Choose LYLAH
             <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-amber-400 rounded-full"></div>
@@ -86,7 +104,7 @@ const BrandHighlights = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-lg text-gray-600 max-w-2xl mx-auto"
+            className="text-lg text-gray-300 max-w-2xl mx-auto"
           >
             Experience the perfect blend of tradition and innovation in every bottle
           </motion.p>
@@ -103,15 +121,15 @@ const BrandHighlights = () => {
             <motion.div
               key={highlight.id}
               variants={itemVariants}
-              className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+              className="bg-gray-900 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group border border-gray-800"
             >
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-amber-100 text-amber-600 mb-6 group-hover:bg-amber-200 transition-colors duration-300">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-amber-900 text-amber-400 mb-6 group-hover:bg-amber-800 transition-colors duration-300">
                 {highlight.icon}
               </div>
-              <h3 className="text-xl font-medium text-gray-900 mb-4 group-hover:text-amber-700 transition-colors duration-300">
+              <h3 className="text-xl font-medium text-amber-400 mb-4 group-hover:text-amber-300 transition-colors duration-300">
                 {highlight.title}
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-400 leading-relaxed">
                 {highlight.description}
               </p>
             </motion.div>
@@ -126,11 +144,11 @@ const BrandHighlights = () => {
             transition={{ duration: 0.8 }}
             className="lg:col-span-3 space-y-8"
           >
-            <h2 className="text-3xl font-serif text-gray-900 relative inline-block">
+            <h2 className="text-3xl font-serif text-white relative inline-block">
               Our Story
               <div className="absolute -bottom-3 left-0 w-16 h-1 bg-amber-400 rounded-full"></div>
             </h2>
-            <p className="text-lg text-gray-600 leading-relaxed">
+            <p className="text-lg text-gray-300 leading-relaxed">
               At LYLAH, we believe that every fragrance tells a story. Our journey began with a passion 
               for creating unique scents that capture moments, memories, and emotions. Each perfume is 
               a carefully composed symphony of notes, crafted to inspire and delight.
@@ -142,12 +160,12 @@ const BrandHighlights = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.5 }}
-                  className="bg-white p-6 rounded-lg shadow-md border-l-4 border-amber-400"
+                  className="bg-gray-900 p-6 rounded-lg shadow-md border-l-4 border-amber-400"
                 >
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">
+                  <h3 className="text-lg font-medium text-amber-400 mb-2">
                     {point.title}
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-400">
                     {point.description}
                   </p>
                 </motion.div>
@@ -181,9 +199,9 @@ const BrandHighlights = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="bg-amber-50 rounded-2xl p-10 mb-20 shadow-lg"
+          className="bg-gray-900 rounded-2xl p-10 mb-20 shadow-lg border border-gray-800"
         >
-          <h3 className="text-2xl font-serif text-center text-gray-900 mb-10 relative inline-block">
+          <h3 className="text-2xl font-serif text-center text-white mb-10 relative inline-block">
             Our Impact
             <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-amber-400 rounded-full"></div>
           </h3>
@@ -202,10 +220,10 @@ const BrandHighlights = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
                 className="text-center"
               >
-                <div className="text-4xl font-bold text-amber-600 mb-2">
+                <div className="text-4xl font-bold text-amber-400 mb-2">
                   {stat.value}
                 </div>
-                <div className="text-gray-700">
+                <div className="text-gray-300">
                   {stat.label}
                 </div>
               </motion.div>
@@ -218,19 +236,60 @@ const BrandHighlights = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="text-center bg-white p-12 rounded-2xl shadow-lg"
+          className="text-center bg-gray-900 p-12 rounded-2xl shadow-lg border border-gray-800"
         >
-          <h3 className="text-3xl font-serif text-gray-900 mb-6">
+          <h3 className="text-3xl font-serif text-white mb-6">
             Experience the Art of Fine Perfumery
           </h3>
           <motion.button 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center px-8 py-4 border border-transparent text-base font-medium rounded-md text-white bg-amber-600 hover:bg-amber-700 shadow-md hover:shadow-lg transition duration-300"
+            className="inline-flex items-center px-8 py-4 border border-transparent text-base font-medium rounded-md text-black bg-amber-400 hover:bg-amber-500 shadow-md hover:shadow-lg transition duration-300"
           >
             Explore Our Collections
           </motion.button>
         </motion.div>
+      </div>
+
+      {/* Animated wave effect at bottom */}
+      <div className="absolute bottom-0 left-0 right-0">
+        <svg 
+          width="100%" 
+          height="192" 
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+        >
+          <motion.path
+            variants={waveVariants}
+            animate="animate"
+            fill="rgba(251, 191, 36, 0.1)"
+          />
+        </svg>
+        <svg 
+          width="100%" 
+          height="160" 
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+          className="absolute bottom-0 left-0 right-0"
+        >
+          <motion.path
+            variants={waveVariants}
+            animate="animate"
+            initial={{
+              d: "M0,64 C320,96 480,32 1080,96 L1080,160 L0,160 Z"
+            }}
+            fill="rgba(251, 191, 36, 0.05)"
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              repeatType: "mirror",
+              ease: "easeInOut",
+              delay: 1
+            }}
+          />
+        </svg>
       </div>
     </section>
   );
