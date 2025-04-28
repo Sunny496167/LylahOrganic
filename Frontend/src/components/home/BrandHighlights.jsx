@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import WaveFooter from '../common/WaveFooter';
 
 const BrandHighlights = () => {
   const highlights = [
@@ -181,7 +182,7 @@ const BrandHighlights = () => {
           >
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-60"></div>
             <img
-              src="/api/placeholder/600/800"
+              src="https://plumgoodness.com/cdn/shop/files/MKD_01.jpg?v=1728452056"
               alt="LYLAH Brand Story"
               className="w-full h-full object-cover"
             />
@@ -252,7 +253,7 @@ const BrandHighlights = () => {
       </div>
 
       {/* Animated wave effect at bottom */}
-      <div className="absolute bottom-0 left-0 right-0">
+      <div className="absolute bottom-0 left-0 right-0 md:hidden">
         <svg 
           width="100%" 
           height="192" 
