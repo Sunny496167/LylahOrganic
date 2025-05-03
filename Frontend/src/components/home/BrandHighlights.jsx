@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import WaveFooter from '../common/WaveFooter';
+import Impact from './Impact';
 
 const BrandHighlights = () => {
   const highlights = [
@@ -89,6 +89,45 @@ const BrandHighlights = () => {
 
   return (
     <section className="py-16 bg-gradient-to-b from-black to-gray-900 text-white relative overflow-hidden">
+      <motion.div 
+              className="absolute top-0 left-0 w-1/2 h-1/2 rounded-full blur-3xl opacity-20 mix-blend-screen"
+              animate={{ 
+                x: [0, 100, 50, 0], 
+                y: [0, 50, 100, 0],
+                scale: [1, 1.1, 0.9, 1],
+                opacity: [0.15, 0.2, 0.15, 0.15]
+              }}
+              transition={{ duration: 20, repeat: Infinity, repeatType: "loop" }}
+              style={{
+                background: 'radial-gradient(circle, rgba(255,215,0,0.6), rgba(205,127,50,0.3), transparent 70%)'
+              }}
+            />
+
+             <motion.div 
+                    className="absolute bottom-0 right-0 w-1/2 h-1/2 rounded-full blur-2xl opacity-20 mix-blend-screen"
+                    animate={{ 
+                      x: [0, -50, -100, 0], 
+                      y: [0, -50, -100, 0], 
+                      scale: [1, 0.9, 1.1, 1],
+                      opacity: [0.15, 0.1, 0.2, 0.15]
+                    }}
+                    transition={{ duration: 15, repeat: Infinity, repeatType: "loop" }}
+                    style={{
+                      background: 'radial-gradient(circle, rgba(65,105,225,0.6), rgba(0,191,255,0.3), transparent 70%)'
+                    }}
+                  />
+                  
+                  <motion.div 
+                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 h-1/2 rounded-full blur-3xl opacity-10 mix-blend-screen"
+                    animate={{ 
+                      scale: [1, 1.2, 0.8, 1],
+                      opacity: [0.1, 0.15, 0.05, 0.1]
+                    }}
+                    transition={{ duration: 25, repeat: Infinity, repeatType: "loop" }}
+                    style={{
+                      background: 'radial-gradient(circle, rgba(220,120,60,0.6), rgba(139,69,19,0.3), transparent 70%)'
+                    }}
+                  />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header with elegant underline */}
         <div className="text-center mb-20">
@@ -182,7 +221,7 @@ const BrandHighlights = () => {
           >
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-60"></div>
             <img
-              src="https://plumgoodness.com/cdn/shop/files/MKD_01.jpg?v=1728452056"
+              src="/founder.jpg"
               alt="LYLAH Brand Story"
               className="w-full h-full object-cover"
             />
@@ -196,41 +235,8 @@ const BrandHighlights = () => {
         </div>
 
         {/* Stats Section with animated counters */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="bg-gray-900 rounded-2xl p-10 mb-20 shadow-lg border border-gray-800"
-        >
-          <h3 className="text-2xl font-serif text-center text-white mb-10 relative inline-block">
-            Our Impact
-            <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-amber-400 rounded-full"></div>
-          </h3>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { label: "Years of Excellence", value: "15+" },
-              { label: "Unique Fragrances", value: "50+" },
-              { label: "Countries", value: "25+" },
-              { label: "Happy Customers", value: "100K+" }
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
-                className="text-center"
-              >
-                <div className="text-4xl font-bold text-amber-400 mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-gray-300">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        <Impact />
+        
 
         {/* Call to Action with interactive button */}
         <motion.div
@@ -292,6 +298,7 @@ const BrandHighlights = () => {
           />
         </svg>
       </div>
+      
     </section>
   );
 };

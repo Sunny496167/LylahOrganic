@@ -38,7 +38,7 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-6'
+        scrolled ? 'bg-stone-50 shadow-md py-2' : 'bg-transparent py-6'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,7 +46,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <motion.h1 
-              className={`font-serif text-2xl md:text-3xl transition-colors duration-300 ${scrolled ? 'text-gray-900' : 'text-white'}`}
+              className={`font-serif text-2xl md:text-3xl transition-colors duration-300 ${scrolled ? 'text-stone-900' : 'text-stone-50'}`}
               whileHover={{ scale: 1.05 }}
             >
               LYLAH
@@ -59,8 +59,8 @@ const Navbar = () => {
               <Link 
                 key={link.name}
                 to={link.path} 
-                className={`text-sm font-medium hover:opacity-70 transition-opacity ${
-                  scrolled ? 'text-gray-800' : 'text-white'
+                className={`text-sm font-medium hover:text-amber-400 transition-colors ${
+                  scrolled ? 'text-stone-800' : 'text-stone-50'
                 }`}
               >
                 {link.name}
@@ -71,28 +71,28 @@ const Navbar = () => {
           {/* Desktop Icons */}
           <div className="hidden md:flex items-center space-x-6">
             <motion.button 
-              whileHover={{ scale: 1.1 }} 
+              whileHover={{ scale: 1.1, color: '#f59e0b' }} 
               whileTap={{ scale: 0.95 }}
               onClick={() => setSearchOpen(!searchOpen)}
-              className={`${scrolled ? 'text-gray-800' : 'text-white'}`}
+              className={`transition-colors ${scrolled ? 'text-stone-800 hover:text-amber-600' : 'text-stone-50 hover:text-amber-400'}`}
             >
               <Search className="h-5 w-5" />
             </motion.button>
             
-            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-              <Link to="/wishlist" className={`${scrolled ? 'text-gray-800' : 'text-white'}`}>
+            <motion.div whileHover={{ scale: 1.1, color: '#f59e0b' }} whileTap={{ scale: 0.95 }}>
+              <Link to="/wishlist" className={`transition-colors ${scrolled ? 'text-stone-800 hover:text-amber-600' : 'text-stone-50 hover:text-amber-400'}`}>
                 <Heart className="h-5 w-5" />
               </Link>
             </motion.div>
             
-            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-              <Link to="/cart" className={`${scrolled ? 'text-gray-800' : 'text-white'}`}>
+            <motion.div whileHover={{ scale: 1.1, color: '#f59e0b' }} whileTap={{ scale: 0.95 }}>
+              <Link to="/cart" className={`transition-colors ${scrolled ? 'text-stone-800 hover:text-amber-600' : 'text-stone-50 hover:text-amber-400'}`}>
                 <ShoppingBag className="h-5 w-5" />
               </Link>
             </motion.div>
             
-            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-              <Link to="/account" className={`${scrolled ? 'text-gray-800' : 'text-white'}`}>
+            <motion.div whileHover={{ scale: 1.1, color: '#f59e0b' }} whileTap={{ scale: 0.95 }}>
+              <Link to="/account" className={`transition-colors ${scrolled ? 'text-stone-800 hover:text-amber-600' : 'text-stone-50 hover:text-amber-400'}`}>
                 <User className="h-5 w-5" />
               </Link>
             </motion.div>
@@ -103,7 +103,7 @@ const Navbar = () => {
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsOpen(!isOpen)}
-              className={`${scrolled ? 'text-gray-800' : 'text-white'}`}
+              className={`${scrolled ? 'text-stone-800' : 'text-stone-50'}`}
             >
               {isOpen ? (
                 <X className="h-6 w-6" />
@@ -123,15 +123,15 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="absolute top-full left-0 right-0 bg-white shadow-md p-4"
+            className="absolute top-full left-0 right-0 bg-stone-50 shadow-md p-4"
           >
             <div className="max-w-3xl mx-auto flex items-center">
               <input 
                 type="text" 
                 placeholder="Search for fragrances..." 
-                className="flex-grow px-4 py-2 border border-gray-200 rounded-l-md focus:outline-none focus:ring-2 focus:ring-amber-500"
+                className="flex-grow px-4 py-2 border border-stone-200 rounded-l-md focus:outline-none focus:ring-2 focus:ring-amber-500"
               />
-              <button className="bg-gray-900 text-white px-4 py-2 rounded-r-md hover:bg-gray-800 transition-colors">
+              <button className="bg-amber-600 text-stone-50 px-4 py-2 rounded-r-md hover:bg-amber-700 transition-colors">
                 <Search className="h-5 w-5" />
               </button>
             </div>
@@ -147,23 +147,23 @@ const Navbar = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white shadow-lg"
+            className="md:hidden bg-stone-50 shadow-lg"
           >
             <div className="py-4 px-4 space-y-3">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   to={link.path}
-                  className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-amber-600 hover:bg-gray-50 rounded-md"
+                  className="block px-3 py-2 text-base font-medium text-stone-700 hover:text-amber-600 hover:bg-stone-100 rounded-md"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}
                 </Link>
               ))}
-              <div className="border-t border-gray-200 pt-4 mt-4">
+              <div className="border-t border-stone-200 pt-4 mt-4">
                 <Link
                   to="/wishlist"
-                  className="flex items-center px-3 py-2 text-base font-medium text-gray-700 hover:text-amber-600"
+                  className="flex items-center px-3 py-2 text-base font-medium text-stone-700 hover:text-amber-600"
                   onClick={() => setIsOpen(false)}
                 >
                   <Heart className="h-5 w-5 mr-3" />
@@ -171,7 +171,7 @@ const Navbar = () => {
                 </Link>
                 <Link
                   to="/cart"
-                  className="flex items-center px-3 py-2 text-base font-medium text-gray-700 hover:text-amber-600"
+                  className="flex items-center px-3 py-2 text-base font-medium text-stone-700 hover:text-amber-600"
                   onClick={() => setIsOpen(false)}
                 >
                   <ShoppingBag className="h-5 w-5 mr-3" />
@@ -179,7 +179,7 @@ const Navbar = () => {
                 </Link>
                 <Link
                   to="/account"
-                  className="flex items-center px-3 py-2 text-base font-medium text-gray-700 hover:text-amber-600"
+                  className="flex items-center px-3 py-2 text-base font-medium text-stone-700 hover:text-amber-600"
                   onClick={() => setIsOpen(false)}
                 >
                   <User className="h-5 w-5 mr-3" />
