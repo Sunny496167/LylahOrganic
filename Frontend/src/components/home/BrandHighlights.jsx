@@ -1,52 +1,90 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import Impact from './Impact';
+import React from "react";
+import { motion } from "framer-motion";
+import Impact from "./Impact";
 
 const BrandHighlights = () => {
   const highlights = [
     {
       id: 1,
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-10 w-10"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.5}
+            d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
+          />
         </svg>
       ),
       title: "Artisanal Craftsmanship",
-      description: "Each fragrance is meticulously crafted by master perfumers using the finest ingredients from around the world."
+      description:
+        "Each fragrance is meticulously crafted by master perfumers using the finest ingredients from around the world.",
     },
     {
       id: 2,
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-10 w-10"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.5}
+            d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"
+          />
         </svg>
       ),
       title: "Sustainable Luxury",
-      description: "We're committed to sustainable practices, using eco-friendly packaging and responsibly sourced ingredients."
+      description:
+        "We're committed to sustainable practices, using eco-friendly packaging and responsibly sourced ingredients.",
     },
     {
       id: 3,
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-10 w-10"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.5}
+            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+          />
         </svg>
       ),
       title: "Unique Collections",
-      description: "Discover our exclusive collections, each telling a unique story through carefully composed scent profiles."
-    }
+      description:
+        "Discover our exclusive collections, each telling a unique story through carefully composed scent profiles.",
+    },
   ];
 
   const storyPoints = [
     {
       id: 1,
       title: "Our Heritage",
-      description: "Founded on the principles of excellence and innovation in perfumery."
+      description:
+        "Founded on the principles of excellence and innovation in perfumery.",
     },
     {
       id: 2,
       title: "Premium Ingredients",
-      description: "Sourcing the world's finest natural essences and innovative aromatic compounds."
-    }
+      description:
+        "Sourcing the world's finest natural essences and innovative aromatic compounds.",
+    },
   ];
 
   // Animation variants
@@ -55,9 +93,9 @@ const BrandHighlights = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
@@ -65,8 +103,8 @@ const BrandHighlights = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6 }
-    }
+      transition: { duration: 0.6 },
+    },
   };
 
   // Wave animation for SVG path
@@ -76,62 +114,65 @@ const BrandHighlights = () => {
         "M0,96 C320,64 440,96 1080,64 L1080,192 L0,192 Z",
         "M0,128 C320,96 480,160 1080,128 L1080,192 L0,192 Z",
         "M0,64 C320,96 480,32 1080,96 L1080,192 L0,192 Z",
-        "M0,96 C320,64 440,96 1080,64 L1080,192 L0,192 Z"
+        "M0,96 C320,64 440,96 1080,64 L1080,192 L0,192 Z",
       ],
       transition: {
         duration: 10,
         repeat: Infinity,
         repeatType: "mirror",
-        ease: "easeInOut"
-      }
-    }
+        ease: "easeInOut",
+      },
+    },
   };
 
   return (
     <section className="py-16 bg-gradient-to-b from-black to-gray-900 text-white relative overflow-hidden">
-      <motion.div 
-              className="absolute top-0 left-0 w-1/2 h-1/2 rounded-full blur-3xl opacity-20 mix-blend-screen"
-              animate={{ 
-                x: [0, 100, 50, 0], 
-                y: [0, 50, 100, 0],
-                scale: [1, 1.1, 0.9, 1],
-                opacity: [0.15, 0.2, 0.15, 0.15]
-              }}
-              transition={{ duration: 20, repeat: Infinity, repeatType: "loop" }}
-              style={{
-                background: 'radial-gradient(circle, rgba(255,215,0,0.6), rgba(205,127,50,0.3), transparent 70%)'
-              }}
-            />
+      <motion.div
+        className="absolute top-0 left-0 w-1/2 h-1/2 rounded-full blur-3xl opacity-20 mix-blend-screen"
+        animate={{
+          x: [0, 100, 50, 0],
+          y: [0, 50, 100, 0],
+          scale: [1, 1.1, 0.9, 1],
+          opacity: [0.15, 0.2, 0.15, 0.15],
+        }}
+        transition={{ duration: 20, repeat: Infinity, repeatType: "loop" }}
+        style={{
+          background:
+            "radial-gradient(circle, rgba(255,215,0,0.6), rgba(205,127,50,0.3), transparent 70%)",
+        }}
+      />
 
-             <motion.div 
-                    className="absolute bottom-0 right-0 w-1/2 h-1/2 rounded-full blur-2xl opacity-20 mix-blend-screen"
-                    animate={{ 
-                      x: [0, -50, -100, 0], 
-                      y: [0, -50, -100, 0], 
-                      scale: [1, 0.9, 1.1, 1],
-                      opacity: [0.15, 0.1, 0.2, 0.15]
-                    }}
-                    transition={{ duration: 15, repeat: Infinity, repeatType: "loop" }}
-                    style={{
-                      background: 'radial-gradient(circle, rgba(65,105,225,0.6), rgba(0,191,255,0.3), transparent 70%)'
-                    }}
-                  />
-                  
-                  <motion.div 
-                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 h-1/2 rounded-full blur-3xl opacity-10 mix-blend-screen"
-                    animate={{ 
-                      scale: [1, 1.2, 0.8, 1],
-                      opacity: [0.1, 0.15, 0.05, 0.1]
-                    }}
-                    transition={{ duration: 25, repeat: Infinity, repeatType: "loop" }}
-                    style={{
-                      background: 'radial-gradient(circle, rgba(220,120,60,0.6), rgba(139,69,19,0.3), transparent 70%)'
-                    }}
-                  />
+      <motion.div
+        className="absolute bottom-0 right-0 w-1/2 h-1/2 rounded-full blur-2xl opacity-20 mix-blend-screen"
+        animate={{
+          x: [0, -50, -100, 0],
+          y: [0, -50, -100, 0],
+          scale: [1, 0.9, 1.1, 1],
+          opacity: [0.15, 0.1, 0.2, 0.15],
+        }}
+        transition={{ duration: 15, repeat: Infinity, repeatType: "loop" }}
+        style={{
+          background:
+            "radial-gradient(circle, rgba(65,105,225,0.6), rgba(0,191,255,0.3), transparent 70%)",
+        }}
+      />
+
+      <motion.div
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 h-1/2 rounded-full blur-3xl opacity-10 mix-blend-screen"
+        animate={{
+          scale: [1, 1.2, 0.8, 1],
+          opacity: [0.1, 0.15, 0.05, 0.1],
+        }}
+        transition={{ duration: 25, repeat: Infinity, repeatType: "loop" }}
+        style={{
+          background:
+            "radial-gradient(circle, rgba(220,120,60,0.6), rgba(139,69,19,0.3), transparent 70%)",
+        }}
+      />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header with elegant underline */}
         <div className="text-center mb-20">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
@@ -140,18 +181,19 @@ const BrandHighlights = () => {
             Why Choose LYLAH
             <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-amber-400 rounded-full"></div>
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.3 }}
             className="text-lg text-gray-300 max-w-2xl mx-auto"
           >
-            Experience the perfect blend of tradition and innovation in every bottle
+            Experience the perfect blend of tradition and innovation in every
+            bottle
           </motion.p>
         </div>
 
         {/* Features Grid with enhanced hover effects */}
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -189,9 +231,11 @@ const BrandHighlights = () => {
               <div className="absolute -bottom-3 left-0 w-16 h-1 bg-amber-400 rounded-full"></div>
             </h2>
             <p className="text-lg text-gray-300 leading-relaxed">
-              At LYLAH, we believe that every fragrance tells a story. Our journey began with a passion 
-              for creating unique scents that capture moments, memories, and emotions. Each perfume is 
-              a carefully composed symphony of notes, crafted to inspire and delight.
+              At LYLAH, we believe that every fragrance tells a story. Our
+              journey began with a passion for creating unique scents that
+              capture moments, memories, and emotions. Each perfume is a
+              carefully composed symphony of notes, crafted to inspire and
+              delight.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {storyPoints.map((point) => (
@@ -205,9 +249,7 @@ const BrandHighlights = () => {
                   <h3 className="text-lg font-medium text-amber-400 mb-2">
                     {point.title}
                   </h3>
-                  <p className="text-gray-400">
-                    {point.description}
-                  </p>
+                  <p className="text-gray-400">{point.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -236,7 +278,6 @@ const BrandHighlights = () => {
 
         {/* Stats Section with animated counters */}
         <Impact />
-        
 
         {/* Call to Action with interactive button */}
         <motion.div
@@ -248,7 +289,7 @@ const BrandHighlights = () => {
           <h3 className="text-3xl font-serif text-white mb-6">
             Experience the Art of Fine Perfumery
           </h3>
-          <motion.button 
+          <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             className="inline-flex items-center px-8 py-4 border border-transparent text-base font-medium rounded-md text-black bg-amber-400 hover:bg-amber-500 shadow-md hover:shadow-lg transition duration-300"
@@ -260,10 +301,10 @@ const BrandHighlights = () => {
 
       {/* Animated wave effect at bottom */}
       <div className="absolute bottom-0 left-0 right-0 md:hidden">
-        <svg 
-          width="100%" 
-          height="192" 
-          fill="none" 
+        <svg
+          width="100%"
+          height="192"
+          fill="none"
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="none"
         >
@@ -273,10 +314,10 @@ const BrandHighlights = () => {
             fill="rgba(251, 191, 36, 0.1)"
           />
         </svg>
-        <svg 
-          width="100%" 
-          height="160" 
-          fill="none" 
+        <svg
+          width="100%"
+          height="160"
+          fill="none"
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="none"
           className="absolute bottom-0 left-0 right-0"
@@ -285,7 +326,7 @@ const BrandHighlights = () => {
             variants={waveVariants}
             animate="animate"
             initial={{
-              d: "M0,64 C320,96 480,32 1080,96 L1080,160 L0,160 Z"
+              d: "M0,64 C320,96 480,32 1080,96 L1080,160 L0,160 Z",
             }}
             fill="rgba(251, 191, 36, 0.05)"
             transition={{
@@ -293,12 +334,11 @@ const BrandHighlights = () => {
               repeat: Infinity,
               repeatType: "mirror",
               ease: "easeInOut",
-              delay: 1
+              delay: 1,
             }}
           />
         </svg>
       </div>
-      
     </section>
   );
 };
