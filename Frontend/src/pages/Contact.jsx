@@ -1,178 +1,156 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import toast from 'react-hot-toast';
-import { validateEmail } from '../utils/validation';
 
-const Contact = () => {
+export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
+    phone: '',
     message: ''
   });
 
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!validateEmail(formData.email)) {
-      toast.error('Please enter a valid email address');
-      return;
-    }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
     setLoading(true);
-    try {
-      // Implement contact form submission
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
-      toast.success('Message sent successfully!');
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    } catch (error) {
-      toast.error('Failed to send message. Please try again.');
-    } finally {
+    
+    // Simulate form submission
+    setTimeout(() => {
       setLoading(false);
-    }
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+      });
+      alert("Message sent successfully!");
+    }, 1500);
   };
 
   return (
-    <div className="min-h-screen py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h1 className="text-4xl font-serif text-gray-900 mb-4">Contact Us</h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            We'd love to hear from you. Please fill out the form below or use our 
-            contact information to reach us.
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-                  required
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-                  required
-                />
-              </div>
-
-              <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700">
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  value={formData.subject}
-                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-                  required
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  rows={4}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-                  required
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={loading}
-                className={`w-full bg-primary-600 text-white py-3 px-4 rounded-md hover:bg-primary-700 transition duration-300 ${
-                  loading ? 'opacity-50 cursor-not-allowed' : ''
-                }`}
-              >
-                {loading ? 'Sending...' : 'Send Message'}
-              </button>
-            </form>
-          </motion.div>
-
-          {/* Contact Information */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="bg-gray-50 p-8 rounded-lg"
-          >
-            <h2 className="text-2xl font-serif text-gray-900 mb-6">
-              Get in Touch
-            </h2>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">Address</h3>
-                <p className="text-gray-600">
-                  123 Perfume Lane<br />
-                  Fragrance District<br />
-                  Mumbai, 400001
-                </p>
-              </div>
-              <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">Contact</h3>
-                <p className="text-gray-600">
-                  Phone: +91 123 456 7890<br />
-                  Email: contact@lylah.com
-                </p>
-              </div>
-              <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">Hours</h3>
-                <p className="text-gray-600">
-                  Monday - Friday: 9:00 AM - 6:00 PM<br />
-                  Saturday: 10:00 AM - 4:00 PM<br />
-                  Sunday: Closed
-                </p>
-              </div>
-            </div>
-
-            {/* Map */}
-            <div className="mt-8 h-64 rounded-lg overflow-hidden">
-              {/* Add your map component here */}
-              <div className="w-full h-full bg-gray-200">
-                {/* Placeholder for map */}
-              </div>
-            </div>
-          </motion.div>
+    <div className="min-h-screen flex flex-col bg-black text-white">
+      {/* Hero Section */}
+      <div className="bg-amber-50 py-16">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold text-gray-900 mb-6">Keep In Touch with Us</h1>
+            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+              We do not sell product from our corporate headquarters in New York City. If you want to visit please reach out to our customer service team first.
+            </p>
+          </div>
         </div>
       </div>
+
+      {/* Main Content */}
+      <main className="flex-grow w-full max-w-6xl mx-auto py-16 px-4 md:px-8 relative overflow-hidden">
+        {/* Animated Gradient Background Elements */}
+        
+        <h1 className="text-4xl md:text-5xl font-serif mb-8 text-center relative z-10">Get in Touch</h1>
+        
+        <div className="grid md:grid-cols-2 gap-12 relative z-10">
+          {/* Contact Form */}
+          <div className="bg-zinc-900 p-8 rounded-lg shadow-lg">
+            <div className="space-y-6">
+              <div>
+                <label className="block mb-2 text-sm font-medium">Name:</label>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full bg-transparent border-b border-gray-600 focus:outline-none focus:border-amber-500 py-2"
+                />
+              </div>
+              
+              <div>
+                <label className="block mb-2 text-sm font-medium">Email:</label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="you@example.com"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full bg-transparent border-b border-gray-600 focus:outline-none focus:border-amber-500 py-2"
+                />
+              </div>
+              
+              <div>
+                <label className="block mb-2 text-sm font-medium">Phone number:</label>
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="(123) 456-7890"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="w-full bg-transparent border-b border-gray-600 focus:outline-none focus:border-amber-500 py-2"
+                />
+              </div>
+              
+              <div>
+                <label className="block mb-2 text-sm font-medium">Message:</label>
+                <textarea
+                  name="message"
+                  rows="4"
+                  placeholder="Your message..."
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="w-full bg-transparent border-b border-gray-600 focus:outline-none focus:border-amber-500 py-2 resize-none"
+                ></textarea>
+              </div>
+              
+              <button
+                onClick={handleSubmit}
+                disabled={loading}
+                className="bg-amber-500 hover:bg-amber-600 text-black font-semibold py-3 px-8 rounded-full transition"
+              >
+                {loading ? 'Sending...' : 'SEND NOW'}
+              </button>
+            </div>
+          </div>
+
+          {/* Contact Info */}
+          <div className="flex flex-col justify-center space-y-6">
+            <p className="text-gray-400">
+              We do not sell products from our corporate headquarters in New York City. If you want to visit, please reach out to our customer service team first.
+            </p>
+            
+            <div className="space-y-4 text-gray-300">
+              <div>
+                <p className="font-semibold text-white">Visit us:</p>
+                <p>Sydney Road, Billboard Street 2219-11C</p>
+              </div>
+              
+              <div>
+                <p className="font-semibold text-white">Email us:</p>
+                <p>aromesupport@mail.com</p>
+              </div>
+              
+              <div>
+                <p className="font-semibold text-white">Call us:</p>
+                <p>+1 (880) 567 891 505</p>
+              </div>
+              
+              <div>
+                <p className="font-semibold text-white">We are open:</p>
+                <p>Monday – Friday: 8:00–20:00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Decorative elements */}
+        <div className="absolute top-1/4 right-1/4 text-amber-400 text-4xl opacity-30 z-0">✧</div>
+        <div className="absolute bottom-1/4 left-1/4 text-amber-400 text-3xl opacity-30 z-0">✧</div>
+      </main>
     </div>
   );
-};
-
-export default Contact;
+}
