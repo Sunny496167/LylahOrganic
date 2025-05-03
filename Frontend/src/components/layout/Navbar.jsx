@@ -47,7 +47,10 @@ const Navbar = () => {
               className="w-24 h-16 tracking-wider"
               whileHover={{ scale: 1.05 }}
             >
-              <img src="/logo.png" alt="lylahorganic"/>
+              <img src="/logo.png" alt="lylahorganic"
+                loading='lazy'
+                className="w-full h-full object-cover"
+              />
             </motion.h1>
           </Link>
           

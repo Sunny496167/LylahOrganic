@@ -222,6 +222,7 @@ const FeaturedProducts = () => {
               src={product.image}
               alt={product.name}
               className="max-h-full w-full object-cover transition-transform duration-300 ease-in-out"
+              loading="lazy"
               style={{
                 filter: isHovered ? "brightness(0.8)" : "brightness(1)",
               }}

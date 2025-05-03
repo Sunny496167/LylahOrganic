@@ -74,6 +74,7 @@ const Hero = () => {
                 src={featuredScents[activeScent].image}
                 alt={featuredScents[activeScent].name}
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
               <div
                 className={`absolute inset-0 ${featuredScents[activeScent].color} opacity-40`}

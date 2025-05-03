@@ -266,6 +266,7 @@ const BrandHighlights = () => {
               src="/founder.jpg"
               alt="LYLAH Brand Story"
               className="w-full h-full object-cover"
+              loading="lazy"
             />
             <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
               <blockquote className="text-xl font-serif italic">
