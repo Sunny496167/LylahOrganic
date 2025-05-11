@@ -1,77 +1,61 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import ProductGrid from '../components/products/ProductGrid';
-import ProductFilters from '../components/products/ProductFilters';
-import { getProducts } from '../utils/api';
-import { PRODUCT_CATEGORIES, PRICE_RANGES } from '../utils/constants';
+import React, { useState } from 'react';
+import { categories, genderOptions, products } from '../utils/products';
+import ProductsGrid from '../components/products/ProductGrid';
+import FiltersSidebar from '../components/products/FiltersSidebar';
+import Hero from '../components/common/Hero';
 
-const Products = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [filters, setFilters] = useState({
-    category: [],
-    priceRange: [],
-    sortBy: 'newest'
-  });
+const ProductsPage = () => {
+  const [filters, setFilters] = useState({ categories: [], gender: null, price: 200 });
 
-  useEffect(() => {
-    fetchProducts();
-  }, [filters]);
-
-  const fetchProducts = async () => {
-    try {
-      setLoading(true);
-      const data = await getProducts(filters);
-      setProducts(data);
-    } catch (error) {
-      console.error('Error fetching products:', error);
-    } finally {
-      setLoading(false);
+  // Filter products based on current filters
+  const filteredProducts = products.filter(product => {
+    // Filter by price
+    if (product.price > filters.price) return false;
+    
+    // Filter by categories (if any selected)
+    if (filters.categories.length > 0 && !filters.categories.some(cat => product.categories?.includes(cat))) {
+      // Only filter if categories are selected and the product doesn't match any selected category
+      return false;
     }
+    
+    // Filter by gender (if selected)
+    if (filters.gender && product.gender && product.gender !== filters.gender) {
+      return false;
+    }
+    
+    return true;
+  });
+  
+  // Update filters function to pass to FiltersSidebar
+  const updateFilters = (newFilters) => {
+    setFilters(newFilters);
   };
 
   return (
-    <div className="min-h-screen py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h1 className="text-4xl font-serif text-gray-900 mb-4">
-            Our Collections
-          </h1>
-          <p className="text-lg text-gray-600">
-            Discover our curated selection of premium fragrances
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Filters */}
-          <div className="lg:col-span-1">
-            <ProductFilters
-              categories={PRODUCT_CATEGORIES}
-              priceRanges={PRICE_RANGES}
-              filters={filters}
-              onFilterChange={setFilters}
-            />
-          </div>
-
-          {/* Product Grid */}
-          <div className="lg:col-span-3">
-            {loading ? (
-              <div className="flex justify-center items-center h-64">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
-              </div>
-            ) : (
-              <ProductGrid products={products} />
-            )}
-          </div>
-        </div>
+    <>
+      <Hero 
+        title="Discover Your Signature Scent" 
+        subtitle="Explore our exclusive collection of perfumes and fragrances." 
+        image="https://img.freepik.com/premium-photo/stylish-bottle-with-perfume-against-corral-background-soft-emerald-color_937888-3637.jpg?uid=R193627658&ga=GA1.1.91846166.1742625654&semt=ais_hybrid&w=740" // Use a relative path to your image in public folder
+        buttonText="Shop Now"
+        buttonLink="#products-section" // Using anchor link for smooth scroll to products
+      />
+      <div id="products-section" className="px-24 flex bg-gray-900 min-h-screen text-gray-100">
+        <FiltersSidebar 
+          filters={filters} 
+          updateFilters={updateFilters} 
+          categories={categories}
+          genderOptions={genderOptions}
+        />
+        
+        <main className="flex-1 p-6">
+          <h1 className="text-2xl font-semibold mb-6">All Products</h1>
+          <p className="mb-4 text-gray-400">Showing {filteredProducts.length} products</p>
+          <ProductsGrid products={filteredProducts} />
+        </main>
       </div>
-    </div>
+    </>
   );
 };
 
-export default Products;
+export default ProductsPage;
