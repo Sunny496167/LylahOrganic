@@ -151,11 +151,11 @@ const ProductCard = ({ product }) => {
             <div className="flex flex-col">
               {product.originalPrice && (
                 <span className="text-gray-400 text-xs line-through">
-                  ${typeof product.originalPrice === 'number' ? product.originalPrice.toFixed(2) : Math.round(product.price * 1.2)}
+                  &#8377;{typeof product.originalPrice === 'number' ? product.originalPrice.toFixed(2) : Math.round(product.price * 1.2)}
                 </span>
               )}
               <span className={`font-bold ${theme.textAccent} text-lg`}>
-                ${typeof product.price === 'number' ? product.price.toFixed(2) : product.price}
+                &#8377;{typeof product.price === 'number' ? product.price.toFixed(2) : product.price}
               </span>
             </div>
             

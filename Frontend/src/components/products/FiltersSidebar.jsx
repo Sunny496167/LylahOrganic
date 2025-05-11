@@ -75,7 +75,7 @@ const FiltersSidebar = ({ filters, updateFilters, categories, genderOptions }) =
         
         {/* Price */}
         <div>
-          <span className="font-medium">Price: up to ${filters.price}</span>
+          <span className="font-medium">Price: up to &#8377;{filters.price}</span>
           <input
             type="range"
             min="0"

@@ -465,7 +465,7 @@ const FeaturedProducts = () => {
           }}
           transition={{ delay: 0.5, duration: 0.6 }}
         >
-          <Link to="/collections">
+          <Link to="/products">
             <motion.button
               className="group flex items-center space-x-2 px-8 py-3 bg-transparent border border-white rounded-full hover:bg-white hover:text-black transition-colors"
               whileHover={{ scale: 1.03 }}
