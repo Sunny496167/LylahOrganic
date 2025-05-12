@@ -1,85 +1,71 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { getStoredCart, setStoredCart } from '../utils/storage';
-import toast from 'react-hot-toast';
+// src/context/CartContext.jsx
+import React, { createContext, useContext, useReducer, useEffect } from 'react';
 
-const CartContext = createContext(null);
+const CartContext = createContext();
+
+const cartReducer = (state, action) => {
+  switch (action.type) {
+    case 'ADD_ITEM':
+      const existingItem = state.items.find(item => item.id === action.payload.id);
+      if (existingItem) {
+        return {
+          ...state,
+          items: state.items.map(item =>
+            item.id === action.payload.id
+              ? { ...item, quantity: item.quantity + action.payload.quantity }
+              : item
+          )
+        };
+      }
+      return {
+        ...state,
+        items: [...state.items, action.payload]
+      };
+    
+    case 'REMOVE_ITEM':
+      return {
+        ...state,
+        items: state.items.filter(item => item.id !== action.payload)
+      };
+    
+    case 'UPDATE_QUANTITY':
+      return {
+        ...state,
+        items: state.items.map(item =>
+          item.id === action.payload.id
+            ? { ...item, quantity: action.payload.quantity }
+            : item
+        )
+      };
+    
+    case 'CLEAR_CART':
+      return {
+        ...state,
+        items: []
+      };
+    
+    default:
+      return state;
+  }
+};
 
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [state, dispatch] = useReducer(cartReducer, { items: [] });
 
+  // Persist cart to localStorage
   useEffect(() => {
-    const storedCart = getStoredCart();
-    if (storedCart) {
-      setCart(storedCart);
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+      dispatch({ type: 'INIT_CART', payload: JSON.parse(savedCart) });
     }
-    setLoading(false);
   }, []);
 
   useEffect(() => {
-    setStoredCart(cart);
-  }, [cart]);
-
-  const addToCart = (product, quantity = 1) => {
-    setCart(prevCart => {
-      const existingItem = prevCart.find(item => item.id === product.id);
-      
-      if (existingItem) {
-        return prevCart.map(item =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + quantity }
-            : item
-        );
-      }
-      
-      return [...prevCart, { ...product, quantity }];
-    });
-    toast.success('Added to cart');
-  };
-
-  const removeFromCart = (productId) => {
-    setCart(prevCart => prevCart.filter(item => item.id !== productId));
-    toast.success('Removed from cart');
-  };
-
-  const updateQuantity = (productId, quantity) => {
-    if (quantity < 1) return;
-    
-    setCart(prevCart =>
-      prevCart.map(item =>
-        item.id === productId
-          ? { ...item, quantity }
-          : item
-      )
-    );
-  };
-
-  const clearCart = () => {
-    setCart([]);
-    setStoredCart([]);
-  };
-
-  const getCartTotal = () => {
-    return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-  };
-
-  const getCartCount = () => {
-    return cart.reduce((count, item) => count + item.quantity, 0);
-  };
+    localStorage.setItem('cart', JSON.stringify(state.items));
+  }, [state.items]);
 
   return (
-    <CartContext.Provider
-      value={{
-        cart,
-        loading,
-        addToCart,
-        removeFromCart,
-        updateQuantity,
-        clearCart,
-        getCartTotal,
-        getCartCount,
-      }}
-    >
+    <CartContext.Provider value={{ ...state, dispatch }}>
       {children}
     </CartContext.Provider>
   );

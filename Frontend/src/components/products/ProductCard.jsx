@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Heart, ShoppingBag, Star } from 'lucide-react';
+import { useCart } from '../../context/CartContext';
 
 
 // Function to determine color theme based on product name
@@ -14,6 +15,20 @@ const getLuminanceType = (productName) => {
 const ProductCard = ({ product }) => {
   const [isHovered, setIsHovered] = useState(false);
   const luminanceType = getLuminanceType(product.name);
+  const { dispatch } = useCart();
+
+  const handleAddToCart = () => {
+    dispatch({
+      type: 'ADD_ITEM',
+      payload: {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        quantity: 1
+      }
+    });
+  }
   
   // Theme colors based on luminance type
   const themeColors = {
@@ -159,7 +174,10 @@ const ProductCard = ({ product }) => {
               </span>
             </div>
             
-            <button className={`bg-gradient-to-r ${theme.gradient} hover:${theme.hoverGradient} text-gray-900 px-4 py-2 rounded-lg font-medium transform hover:scale-105 transition-all duration-300`}>
+            <button 
+              onClick={handleAddToCart}
+              className={`bg-gradient-to-r ${theme.gradient} hover:${theme.hoverGradient} text-gray-900 px-4 py-2 rounded-lg font-medium transform hover:scale-105 transition-all duration-300`}
+            >
               Add to Cart
             </button>
           </div>

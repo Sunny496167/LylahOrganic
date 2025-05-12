@@ -1,172 +1,117 @@
-import React, { useState, useEffect } from 'react';
+// src/components/products/ProductDetails.jsx
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { useCart } from '../context/CartContext';
-import { getProductById } from '../utils/api';
-import { formatPrice } from '../utils/helpers';
+import { Star, Heart, ShoppingBag, ChevronLeft } from 'lucide-react';
+import { products } from '../utils/products';
 
-const ProductDetail = () => {
-  const { id } = useParams();
-  const { addToCart } = useCart();
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [selectedImage, setSelectedImage] = useState(0);
+const ProductDetails = () => {
+  const { productId } = useParams();
   const [quantity, setQuantity] = useState(1);
+  
+  const product = products.find(p => p.id === parseInt(productId));
 
   useEffect(() => {
-    fetchProduct();
-  }, [id]);
-
-  const fetchProduct = async () => {
-    try {
-      setLoading(true);
-      const data = await getProductById(id);
-      setProduct(data);
-      setSelectedImage(0);
-    } catch (error) {
-      console.error('Error fetching product:', error);
-    } finally {
-      setLoading(false);
+    if (product) {
+      document.title = `${product.name} | Lylah Perfumes`;
     }
-  };
+  }, [product]);
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
-      </div>
-    );
-  }
-
-  if (!product) {
-    return (
-      <div className="text-center py-16">
-        <h2 className="text-2xl font-medium text-gray-900">Product not found</h2>
-      </div>
-    );
-  }
+  if (!product) return <div className="container mx-auto py-12 text-center">Product not found</div>;
 
   return (
-    <div className="min-h-screen py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Product Images */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden">
-              <img
-                src={product.images[selectedImage]}
-                alt={product.name}
+    <div className="container mx-auto py-12 px-4">
+      <div className="max-w-6xl mx-auto">
+        <a href="/products" className="flex items-center text-gray-400 hover:text-white mb-8">
+          <ChevronLeft className="h-5 w-5" />
+          Back to Products
+        </a>
+
+        <div className="grid md:grid-cols-2 gap-12">
+          {/* Image Gallery */}
+          <div className="grid grid-cols-4 gap-4">
+            <div className="col-span-4 relative h-96 bg-gray-800 rounded-xl overflow-hidden">
+              <img 
+                src={product.image} 
+                alt={product.name} 
                 className="w-full h-full object-cover"
               />
+              {product.isNew && (
+                <div className="absolute top-4 right-4 bg-white text-black px-3 py-1 text-sm font-medium uppercase rounded">
+                  New Arrival
+                </div>
+              )}
             </div>
-            <div className="mt-4 grid grid-cols-4 gap-4">
-              {product.images.map((image, index) => (
-                <button
-                  key={index}
-                  onClick={() => setSelectedImage(index)}
-                  className={`aspect-w-1 aspect-h-1 rounded-lg overflow-hidden ${
-                    selectedImage === index ? 'ring-2 ring-primary-500' : ''
-                  }`}
-                >
-                  <img
-                    src={image}
-                    alt={`${product.name} ${index + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                </button>
-              ))}
+            <div className="col-span-1">
+              <div className="aspect-square bg-gray-800 rounded-lg cursor-pointer"></div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Product Info */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="space-y-8"
-          >
-            <div>
-              <h1 className="text-3xl font-serif text-gray-900 mb-2">
-                {product.name}
-              </h1>
-              <p className="text-2xl text-primary-600">
-                {formatPrice(product.price)}
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-lg font-medium text-gray-900 mb-2">
-                Description
-              </h2>
-              <p className="text-gray-600">{product.description}</p>
-            </div>
-
-            <div>
-              <h2 className="text-lg font-medium text-gray-900 mb-2">
-                Scent Notes
-              </h2>
-              <div className="flex flex-wrap gap-2">
-                {product.scentNotes.map((note) => (
-                  <span
-                    key={note}
-                    className="px-3 py-1 rounded-full bg-gray-100 text-gray-600 text-sm"
-                  >
-                    {note}
-                  </span>
+          <div className="space-y-6">
+            <h1 className="text-4xl font-bold text-white">{product.name}</h1>
+            
+            <div className="flex items-center space-x-4">
+              <div className="flex items-center">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className={`h-5 w-5 ${i < product.rating ? 'text-amber-400 fill-amber-400' : 'text-gray-600'}`}
+                  />
                 ))}
               </div>
+              <span className="text-gray-400">({product.reviewCount} reviews)</span>
             </div>
 
-            <div>
-              <h2 className="text-lg font-medium text-gray-900 mb-2">
-                Quantity
-              </h2>
-              <select
-                value={quantity}
-                onChange={(e) => setQuantity(Number(e.target.value))}
-                className="mt-1 block w-24 rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-              >
-                {[1, 2, 3, 4, 5].map((num) => (
-                  <option key={num} value={num}>
-                    {num}
-                  </option>
-                ))}
-              </select>
+            <p className="text-xl font-bold text-amber-400">
+              ₹{product.price.toFixed(2)}
+              {product.originalPrice && (
+                <span className="ml-3 text-gray-400 line-through text-lg">
+                  ₹{product.originalPrice.toFixed(2)}
+                </span>
+              )}
+            </p>
+
+            <p className="text-gray-300 leading-relaxed">
+              {product.description}
+            </p>
+
+            <div className="flex items-center space-x-4">
+              <div className="flex items-center border border-gray-700 rounded-lg">
+                <button 
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  className="px-4 py-2 text-gray-400 hover:text-white"
+                >
+                  -
+                </button>
+                <span className="px-4 py-2 text-white">{quantity}</span>
+                <button 
+                  onClick={() => setQuantity(quantity + 1)}
+                  className="px-4 py-2 text-gray-400 hover:text-white"
+                >
+                  +
+                </button>
+              </div>
+              <button className="flex-1 bg-amber-500 hover:bg-amber-600 text-black px-8 py-3 rounded-lg font-bold transition-colors">
+                Add to Cart
+              </button>
+              <button className="p-3 border border-gray-700 rounded-lg hover:border-amber-400">
+                <Heart className="h-6 w-6 text-gray-400 hover:text-amber-400" />
+              </button>
             </div>
 
-            <button
-              onClick={() => addToCart(product, quantity)}
-              className="w-full bg-primary-600 text-white py-3 px-4 rounded-md hover:bg-primary-700 transition duration-300"
-            >
-              Add to Cart
-            </button>
-
-            {/* Additional Info */}
-            <div className="border-t border-gray-200 pt-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="text-sm font-medium text-gray-900 mb-2">
-                    Size
-                  </h3>
-                  <p className="text-gray-600">{product.size}</p>
-                </div>
-                <div>
-                  <h3 className="text-sm font-medium text-gray-900 mb-2">
-                    Category
-                  </h3>
-                  <p className="text-gray-600">{product.category}</p>
-                </div>
+            <div className="pt-6 border-t border-gray-800">
+              <h3 className="text-lg font-semibold text-white mb-4">Product Details</h3>
+              <div className="space-y-2 text-gray-400">
+                <p><span className="text-white">Size:</span> 100ml Eau de Parfum</p>
+                <p><span className="text-white">Ingredients:</span> Premium essential oils, alcohol-free base</p>
+                <p><span className="text-white">Longevity:</span> 8-10 hours</p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default ProductDetail;
+export default ProductDetails;
