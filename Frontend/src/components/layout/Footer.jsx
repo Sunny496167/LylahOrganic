@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram, Facebook, Linkedin, Youtube, Twitter } from 'lucide-react';
+import { Instagram, Facebook, Linkedin, Youtube } from 'lucide-react';
+import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
@@ -63,20 +64,20 @@ const Footer = () => {
                 Follow us on social media for updates and exclusive offers.
               </p>
               <div className="flex space-x-5">
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition duration-300">
+                <a href="https://www.instagram.com/lylahperfumes?igsh=MWl2cWNmZG00YjN4bw==" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition duration-300">
                   <Instagram size={20} />
                 </a>
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition duration-300">
+                {/* <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition duration-300">
                   <Facebook size={20} />
-                </a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition duration-300">
+                </a> */}
+                <a href="https://www.linkedin.com/company/lylah-perfumes/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition duration-300">
                   <Linkedin size={20} />
                 </a>
-                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition duration-300">
+                <a href="https://youtube.com/@lylahperfumes?si=GWm3-8wVRj8vhOWv" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition duration-300">
                   <Youtube size={20} />
                 </a>
-                <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition duration-300">
-                  <Twitter size={20} />
+                <a href="https://x.com/lylahperfumes?s=11" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition duration-300">
+                  <FaXTwitter size={20} />
                 </a>
               </div>
             </div>

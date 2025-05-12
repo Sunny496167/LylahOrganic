@@ -40,7 +40,7 @@ const ProductsPage = () => {
         buttonText="Shop Now"
         buttonLink="#products-section" // Using anchor link for smooth scroll to products
       />
-      <div id="products-section" className="px-24 flex bg-gray-900 min-h-screen text-gray-100">
+      <div id="products-section" className="md:px-24 flex bg-gray-900 min-h-screen text-gray-100">
         <FiltersSidebar 
           filters={filters} 
           updateFilters={updateFilters} 
