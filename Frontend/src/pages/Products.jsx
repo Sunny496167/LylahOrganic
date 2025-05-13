@@ -30,7 +30,7 @@ const ProductsPage = () => {
         buttonText="Shop Now"
         buttonLink="#products-section"
       />
-      <div id="products-section" className="md:px-24 flex bg-gray-900 min-h-screen text-gray-100">
+      <div id="products-section" className="md:px-24 flex bg-black bg-gradient-to-bl from-gray-900 via-black to-gray-900 min-h-screen text-gray-100">
         <FiltersSidebar 
           filters={filters} 
           updateFilters={updateFilters} 
@@ -38,7 +38,7 @@ const ProductsPage = () => {
           genderOptions={genderOptions}
         />
         
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6 ">
           <h1 className="text-2xl font-semibold mb-6">All Products</h1>
           <p className="mb-4 text-gray-400">Showing {filteredProducts.length} products</p>
           <ProductsGrid products={filteredProducts} />

@@ -11,7 +11,7 @@ const Cart= () => {
   const total = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
   return (
-    <div className="relative bg-gray-900 min-h-screen">
+    <div className="min-h-screen py-16 bg-black bg-gradient-to-bl from-gray-900 via-black to-gray-900">
       <Hero 
         title="Your Cart" 
         subtitle="Checkout your items"
@@ -29,10 +29,27 @@ const Cart= () => {
         </div>
 
         {items.length === 0 ? (
-          <div className="text-center py-16">
-            <ShoppingBag className="h-16 w-16 text-gray-600 mx-auto mb-4" />
-            <p className="text-gray-400 text-xl">Your cart is empty</p>
-          </div>
+          <div className="min-h-screen flex items-center justify-center">
+                  {/* Animated gradient background */}
+                  <div className="fixed inset-0 -z-10 bg-black">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(90,45,140,0.2),transparent_40%)] animate-pulse"></div>
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,rgba(255,165,0,0.1),transparent_30%)] animate-pulse" style={{ animationDelay: '1s' }}></div>
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.8),transparent_70%)]"></div>
+                  </div>
+                  
+                  <div className="text-center p-8 bg-black/40 backdrop-blur-sm rounded-2xl border border-gray-800 shadow-xl max-w-md w-full">
+                    <div className="flex justify-center mb-6">
+                      <div className="bg-gray-900 p-6 rounded-full border border-gray-800">
+                        <ShoppingBag className="h-12 w-12 text-amber-400" />
+                      </div>
+                    </div>
+                    <h2 className="text-2xl font-bold bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200 bg-clip-text text-transparent mb-4">Your cart is empty</h2>
+                    <p className="text-gray-400 mb-6">Looks like you haven't added any luxury fragrances to your cart yet.</p>
+                    <Link to="/" className="block w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black px-8 py-3 rounded-full font-bold transition-all duration-300 shadow-lg hover:shadow-amber-500/30">
+                      Continue Shopping
+                    </Link>
+                  </div>
+                </div>
         ) : (
           <div className="space-y-6">
             {items.map(item => (
