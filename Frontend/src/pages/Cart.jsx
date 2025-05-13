@@ -11,7 +11,7 @@ const Cart= () => {
   const total = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
   return (
-    <div className="min-h-screen py-16 bg-black bg-gradient-to-bl from-gray-900 via-black to-gray-900">
+    <div className="min-h-screen bg-black bg-gradient-to-bl from-gray-900 via-black to-gray-900">
       <Hero 
         title="Your Cart" 
         subtitle="Checkout your items"

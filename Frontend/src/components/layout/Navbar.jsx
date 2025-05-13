@@ -49,7 +49,7 @@ const Navbar = () => {
             >
               <img src="/logo.png" alt="lylahorganic"
                 loading='lazy'
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
             </motion.h1>
           </Link>
